@@ -12,11 +12,12 @@ const loadModule = (cb) => (componentModule) => {
   cb(null, componentModule.default);
 };
 
+/* eslint-disable  */
 export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
 
-  return [
+  const childRoutes = [
     {
       path: '/',
       name: 'home',
@@ -56,4 +57,15 @@ export default function createRoutes(store) {
       },
     },
   ];
-}
+
+  return {
+    getComponent(nextState, cb) {
+      import('containers/App')
+        .then(loadModule(cb))
+        .catch(errorLoading);
+    },
+    childRoutes,
+  };
+};
+
+/* eslint-enable */

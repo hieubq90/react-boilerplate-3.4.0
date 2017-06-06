@@ -2,19 +2,37 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OfflinePlugin = require('offline-plugin');
 
 module.exports = require('./webpack.base.babel')({
   // In production, we skip all hot-reloading stuff
-  entry: [
-    path.join(process.cwd(), 'app/app.js'),
-  ],
+  entry: [path.join(process.cwd(), 'app/app.js')],
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].chunk.js',
+    filename: 'static/js/[name].[chunkhash].js',
+    chunkFilename: 'static/js/[name].[chunkhash].chunk.js',
   },
+
+  cssLoader: ExtractTextPlugin.extract(
+    Object.assign({
+      fallback: 'style-loader',
+      use: [
+        {
+          loader: require.resolve('css-loader'),
+          options: {
+            modules: true,
+            importLoaders: 1,
+            localIdentName: '[name]__[local]___[hash:base64:5]',
+          },
+        },
+        {
+          loader: 'postcss-loader',
+        },
+      ],
+    })
+  ),
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
@@ -41,6 +59,8 @@ module.exports = require('./webpack.base.babel')({
       },
       inject: true,
     }),
+
+    new ExtractTextPlugin('static/css/[name].[contenthash:8].css'),
 
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
@@ -69,6 +89,6 @@ module.exports = require('./webpack.base.babel')({
   ],
 
   performance: {
-    assetFilter: (assetFilename) => !(/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename)),
+    assetFilter: (assetFilename) => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
 });
