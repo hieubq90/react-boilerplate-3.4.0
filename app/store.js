@@ -17,7 +17,7 @@ export default function configureStore(initialState = {}, history) {
   const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
   if (process.env.NODE_ENV === 'development') {
-    const { createLogger } = require('redux-logger');
+    const { createLogger } = require('redux-logger');  // eslint-disable-line global-require
     const reduxLogger = createLogger({
       diff: true,
     });
