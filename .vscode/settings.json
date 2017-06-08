@@ -1,12 +1,13 @@
 {
   // "editor.formatOnSave": false,
   "eslint.enable": true,
-  "eslint.autoFixOnSave": true
-  // "prettier.printWidth": 120,
-  // "prettier.singleQuote": true,
-  // "prettier.trailingComma": "all",
+  "eslint.autoFixOnSave": false,
+  "prettier.printWidth": 120,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
   // "prettier.jsxBracketSameLine": true,
   // Disabling the default JavaScript formatter allows Prettier to handle our code formatting.
   // Enable/disable default JavaScript formatter (For Prettier)
-  // "javascript.format.enable": false
+  // "javascript.validate.enable": false,
+  "javascript.format.enable": false
 }

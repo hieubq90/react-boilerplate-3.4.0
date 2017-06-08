@@ -5,6 +5,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
+// prettier-ignore
 module.exports = (options) => ({
   entry: options.entry,
   output: Object.assign(
