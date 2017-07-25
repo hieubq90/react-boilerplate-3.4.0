@@ -3,6 +3,8 @@
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist-immutable';
+import localForage from 'localforage';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
@@ -24,7 +26,11 @@ export default function configureStore(initialState = {}, history) {
     middlewares.push(reduxLogger);
   }
 
-  const enhancers = [applyMiddleware(...middlewares)];
+  // Do not use redux-persist
+  // const enhancers = [applyMiddleware(...middlewares)];
+
+  // Use redux-persist
+  const enhancers = [applyMiddleware(...middlewares), autoRehydrate()];
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */
@@ -41,6 +47,8 @@ export default function configureStore(initialState = {}, history) {
     fromJS(initialState),
     composeEnhancers(...enhancers)
   );
+
+  persistStore(store, { storage: localForage });
 
   // Extensions
   store.runSaga = sagaMiddleware.run;

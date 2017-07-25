@@ -64,7 +64,9 @@
     ],
     "env": {
       "production": {
-        "only": ["app"],
+        "only": [
+          "app"
+        ],
         "plugins": [
           "transform-react-remove-prop-types",
           "transform-react-constant-elements",
@@ -72,20 +74,34 @@
         ]
       },
       "test": {
-        "plugins": ["transform-es2015-modules-commonjs", "dynamic-import-node"]
+        "plugins": [
+          "transform-es2015-modules-commonjs",
+          "dynamic-import-node"
+        ]
       }
     }
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": ["prettier", "prettier/flowtype", "prettier/react"],
+    "extends": [
+      "prettier",
+      "prettier/flowtype",
+      "prettier/react"
+    ],
     "env": {
       "browser": true,
       "node": true,
       "jest": true,
       "es6": true
     },
-    "plugins": ["redux-saga", "react", "prettier", "flowtype", "jsx-a11y", "import"],
+    "plugins": [
+      "redux-saga",
+      "react",
+      "prettier",
+      "flowtype",
+      "jsx-a11y",
+      "import"
+    ],
     "parserOptions": {
       "ecmaVersion": 2016,
       "sourceType": "module",
@@ -94,14 +110,20 @@
       }
     },
     "rules": {
-      "prettier/prettier": ["error", {
-        "singleQuote": true,
-        "trailingComma": "es5",
-        "bracketSpacing": true,
-        "jsxBracketSameLine": true,
-        "parser": "flow"
-      }],
-      "arrow-body-style": [2, "as-needed"],
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "trailingComma": "es5",
+          "bracketSpacing": true,
+          "jsxBracketSameLine": true,
+          "parser": "flow"
+        }
+      ],
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ],
       "import/imports-first": 0,
       "import/newline-after-import": 0,
       "import/no-dynamic-require": 0,
@@ -143,8 +165,20 @@
   },
   "dllPlugin": {
     "path": "node_modules/react-boilerplate-dlls",
-    "exclude": ["chalk", "compression", "cross-env", "express", "ip", "minimist", "sanitize.css"],
-    "include": ["core-js", "lodash", "eventsource-polyfill"]
+    "exclude": [
+      "chalk",
+      "compression",
+      "cross-env",
+      "express",
+      "ip",
+      "minimist",
+      "sanitize.css"
+    ],
+    "include": [
+      "core-js",
+      "lodash",
+      "eventsource-polyfill"
+    ]
   },
   "jest": {
     "collectCoverageFrom": [
@@ -162,7 +196,10 @@
         "lines": 98
       }
     },
-    "moduleDirectories": ["node_modules", "app"],
+    "moduleDirectories": [
+      "node_modules",
+      "app"
+    ],
     "moduleNameMapper": {
       ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/mocks/cssModule.js",
       ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/image.js"
@@ -181,6 +218,7 @@
     "intl": "^1.2.5",
     "invariant": "2.2.2",
     "ip": "1.1.4",
+    "localforage": "^1.5.0",
     "lodash": "4.17.2",
     "minimist": "1.2.0",
     "prop-types": "^15.5.10",
@@ -195,6 +233,7 @@
     "redux": "^3.6.0",
     "redux-immutable": "^4.0.0",
     "redux-logger": "^3.0.6",
+    "redux-persist-immutable": "^4.3.0",
     "redux-saga": "^0.15.3",
     "reselect": "^3.0.1",
     "sanitize.css": "4.1.0",
