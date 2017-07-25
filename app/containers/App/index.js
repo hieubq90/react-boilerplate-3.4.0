@@ -31,7 +31,10 @@ export function App(props) {
         titleTemplate="%s - React.js Boilerplate"
         defaultTitle="React.js Boilerplate"
         meta={[
-          { name: 'description', content: 'A React.js Boilerplate application' },
+          {
+            name: 'description',
+            content: 'A React.js Boilerplate application',
+          },
         ]}
       />
       <Header />

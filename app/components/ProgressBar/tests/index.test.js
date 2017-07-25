@@ -17,37 +17,29 @@ describe('withProgressBar()', () => {
   });
 
   function Component() {
-    return (
-      <div></div>
-    );
+    return <div />;
   }
 
   const router = {
-    listenBefore: () => (() => {}),
+    listenBefore: () => () => {},
   };
 
   const HocComponent = withProgressBar(Component);
 
   it('Should exist', () => {
-    const renderedComponent = mount(
-      <HocComponent />
-    );
+    const renderedComponent = mount(<HocComponent />);
 
     expect(renderedComponent.find(Component).length).toBe(1);
   });
 
   it('Should render <ProgressBar />', () => {
-    const renderedComponent = mount(
-      <HocComponent />
-    );
+    const renderedComponent = mount(<HocComponent />);
 
     expect(renderedComponent.find(ProgressBar).length).toBe(1);
   });
 
   it('Should initially have state.progress = -1', () => {
-    const renderedComponent = mount(
-      <HocComponent />
-    );
+    const renderedComponent = mount(<HocComponent />);
 
     expect(renderedComponent.state().progress).toBe(-1);
   });

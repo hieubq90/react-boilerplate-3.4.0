@@ -17,7 +17,7 @@ export default function configureStore(initialState = {}, history) {
   const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
   if (process.env.NODE_ENV === 'development') {
-    const { createLogger } = require('redux-logger');  // eslint-disable-line global-require
+    const { createLogger } = require('redux-logger'); // eslint-disable-line global-require
     const reduxLogger = createLogger({
       diff: true,
     });
@@ -28,14 +28,19 @@ export default function configureStore(initialState = {}, history) {
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* eslint-disable no-underscore-dangle */
-  const composeEnhancers = process.env.NODE_ENV !== 'production' &&
+  const composeEnhancers =
+    process.env.NODE_ENV !== 'production' &&
     typeof window === 'object' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    : compose;
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      : compose;
   /* eslint-enable */
 
-  const store = createStore(createReducer(), fromJS(initialState), composeEnhancers(...enhancers));
+  const store = createStore(
+    createReducer(),
+    fromJS(initialState),
+    composeEnhancers(...enhancers)
+  );
 
   // Extensions
   store.runSaga = sagaMiddleware.run;
@@ -45,7 +50,7 @@ export default function configureStore(initialState = {}, history) {
   /* istanbul ignore next */
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-      import('./reducers').then((reducerModule) => {
+      import('./reducers').then(reducerModule => {
         const createReducers = reducerModule.default;
         const nextReducers = createReducers(store.asyncReducers);
 

@@ -1,5 +1,5 @@
 {
-  // "editor.formatOnSave": false,
+  "editor.formatOnSave": false,
   "eslint.enable": true,
   "eslint.autoFixOnSave": false,
   "prettier.printWidth": 120,

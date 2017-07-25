@@ -23,6 +23,10 @@ describe('<Toggle />', () => {
         <Toggle values={['en', 'de']} messages={messages} />
       </IntlProvider>
     );
-    expect(renderedComponent.contains(<Toggle values={['en', 'de']} messages={messages} />)).toBe(true);
+    expect(
+      renderedComponent.contains(
+        <Toggle values={['en', 'de']} messages={messages} />
+      )
+    ).toBe(true);
   });
 });
