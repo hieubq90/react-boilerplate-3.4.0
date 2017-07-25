@@ -60,9 +60,25 @@ export default function createRoutes(store) {
 
   return {
     getComponent(nextState, cb) {
-      import('containers/App')
-        .then(loadModule(cb))
-        .catch(errorLoading);
+      // Do not use global sagas
+      // import('containers/App')
+      //   .then(loadModule(cb))
+      //   .catch(errorLoading);
+
+      // Use global sagas
+      const importModules = Promise.all([
+        import('containers/App/sagas'),
+        import('containers/App'),
+      ]);
+
+      const renderRoute = loadModule(cb);
+
+      importModules.then(([sagas, component]) => {
+        injectSagas(sagas.default);
+        renderRoute(component);
+      });
+
+      importModules.catch(errorLoading);
     },
     childRoutes,
   };
