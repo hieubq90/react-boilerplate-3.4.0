@@ -21,11 +21,13 @@ const Circle = props => {
     left: 0;
     top: 0;
     ${props.rotate &&
-      `
+      ` 
       -webkit-transform: rotate(${props.rotate}deg);
       -ms-transform: rotate(${props.rotate}deg);
       transform: rotate(${props.rotate}deg);
-    `} &:before {
+    `};
+
+    &:before {
       content: '';
       display: block;
       margin: 0 auto;
